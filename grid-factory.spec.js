@@ -1,4 +1,4 @@
-const {createGrid} = require('./grid-factory');
+const {createGrid, addGridBorders} = require('./grid-factory');
 
 
 describe('grid initialization', () => {
@@ -15,16 +15,16 @@ describe('grid initialization', () => {
         const rows = 6;
         const columns = 10;
 
-        const grid = createGrid(rows, columns);
+        const grid = addGridBorders(createGrid(rows, columns));
 
-        for (let column = 0; column < columns; column++) {
+        for (let column = 0; column < grid[0].length; column++) {
             expect(grid[0][column]).toEqual('-');
-            expect(grid[rows - 1][column]).toEqual('-');
+            expect(grid[grid.length - 1][column]).toEqual('-');
         }
 
-        for (let row = 1; row < rows - 1; row++) {
+        for (let row = 1; row < grid.length - 1; row++) {
             expect(grid[row][0]).toEqual('|');
-            expect(grid[row][columns - 1]).toEqual('|');
+            expect(grid[row][grid[0].length - 1]).toEqual('|');
         }
     });
 });

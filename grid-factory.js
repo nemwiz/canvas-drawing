@@ -8,7 +8,7 @@ const createGrid = (numOfRows, numOfColumns) => {
         }
     }
 
-    return addGridBorders(grid);
+    return grid;
 };
 
 const addVerticalBorders = (grid) => {
@@ -35,14 +35,25 @@ const addHorizontalGridBorders = (grid) => {
 };
 
 const addGridBorders = (grid) => {
+    grid.push([...grid[0]]);
+    grid.push([...grid[0]]);
+
+    for (let row = 0; row < grid.length; row++) {
+        grid[row].push(' ');
+        grid[row].push(' ')
+    }
+
     return addHorizontalGridBorders(addVerticalBorders(grid));
 };
 
 const printGrid = (grid) => {
-    for (let row = 0; row < grid.length; row++) {
+
+    const gridWithBorders = addGridBorders(grid);
+
+    for (let row = 0; row < gridWithBorders.length; row++) {
         let canvas = '';
-        for (let column = 0; column < grid[row].length; column++) {
-            canvas = canvas + grid[row][column];
+        for (let column = 0; column < gridWithBorders[row].length; column++) {
+            canvas = canvas + gridWithBorders[row][column];
         }
         console.log(canvas);
     }
@@ -50,5 +61,6 @@ const printGrid = (grid) => {
 
 module.exports = {
     createGrid: createGrid,
+    addGridBorders: addGridBorders,
     printGrid: printGrid
 };
