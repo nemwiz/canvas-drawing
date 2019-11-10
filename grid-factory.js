@@ -35,15 +35,19 @@ const addHorizontalGridBorders = (grid) => {
 };
 
 const addGridBorders = (grid) => {
-    grid.push([...grid[0]]);
-    grid.push([...grid[0]]);
+    const gridWithBorders = grid.map(rowsWithColumns => {
+        return [...rowsWithColumns]
+    });
 
-    for (let row = 0; row < grid.length; row++) {
-        grid[row].push(' ');
-        grid[row].push(' ')
+    gridWithBorders.push(grid[0].map(() => ' '));
+    gridWithBorders.push(grid[0].map(() => ' '));
+
+    for (let row = 0; row < gridWithBorders.length; row++) {
+        gridWithBorders[row].push(' ');
+        gridWithBorders[row].push(' ')
     }
 
-    return addHorizontalGridBorders(addVerticalBorders(grid));
+    return addHorizontalGridBorders(addVerticalBorders(gridWithBorders));
 };
 
 const printGrid = (grid) => {
