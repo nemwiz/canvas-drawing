@@ -1,10 +1,12 @@
+const {symbols} = require('./constants');
+
 const createGrid = (numOfRows, numOfColumns) => {
     let grid = [];
 
     for (let row = 0; row < numOfRows; row++) {
         grid[row] = [];
         for (let column = 0; column < numOfColumns; column++) {
-            grid[row].push(' ')
+            grid[row].push(symbols.EMPTY)
         }
     }
 
@@ -16,8 +18,8 @@ const addVerticalBorders = (grid) => {
     const lastColumn = grid[0].length - 1;
 
     for (let row = 1; row < totalRows; row++) {
-        grid[row][0] = '|';
-        grid[row][lastColumn] = '|';
+        grid[row][0] = symbols.VERTICAL_BORDER;
+        grid[row][lastColumn] = symbols.VERTICAL_BORDER;
     }
 
     return grid;
@@ -27,8 +29,8 @@ const addHorizontalGridBorders = (grid) => {
     const totalColumns = grid[0].length;
     const lastRow = grid.length - 1;
     for (let column = 0; column < totalColumns; column++) {
-        grid[0][column] = '-';
-        grid[lastRow][column] = '-';
+        grid[0][column] = symbols.HORIZONTAL_BORDER;
+        grid[lastRow][column] = symbols.HORIZONTAL_BORDER;
     }
 
     return grid;
@@ -40,12 +42,12 @@ const addGridBorders = (grid) => {
         return [...rowsWithColumns]
     });
 
-    gridWithBorders.push(grid[0].map(() => ' '));
-    gridWithBorders.unshift(grid[0].map(() => ' '));
+    gridWithBorders.push(grid[0].map(() => symbols.EMPTY));
+    gridWithBorders.unshift(grid[0].map(() => symbols.EMPTY));
 
     for (let row = 0; row < gridWithBorders.length; row++) {
-        gridWithBorders[row].push(' ');
-        gridWithBorders[row].push(' ')
+        gridWithBorders[row].push(symbols.EMPTY);
+        gridWithBorders[row].push(symbols.EMPTY)
     }
 
     return addHorizontalGridBorders(addVerticalBorders(gridWithBorders));

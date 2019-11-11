@@ -1,10 +1,11 @@
+const {symbols} = require('./constants');
 const {drawLine} = require('./canvas-painter');
 const {createGrid} = require('./grid-factory');
 
 describe('drawing horizontal and vertical lines', () => {
 
     const getAllPointsFromGrid = (grid) => {
-        return grid.flatMap(row => row.filter(point => point === 'x'));
+        return grid.flatMap(row => row.filter(point => point === symbols.X));
     };
 
     it('should draw a horizontal line', () => {
