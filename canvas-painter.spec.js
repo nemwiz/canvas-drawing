@@ -1,13 +1,12 @@
 const {symbols} = require('./constants');
-const {drawLine} = require('./canvas-painter');
+const {drawLine, drawRectangle} = require('./canvas-painter');
 const {createGrid} = require('./grid-factory');
 
+const getAllPointsFromGrid = (grid) => {
+    return grid.flatMap(row => row.filter(point => point === symbols.X));
+};
+
 describe('drawing horizontal and vertical lines', () => {
-
-    const getAllPointsFromGrid = (grid) => {
-        return grid.flatMap(row => row.filter(point => point === symbols.X));
-    };
-
     it('should draw a horizontal line', () => {
         const grid = createGrid(4, 20);
 
@@ -32,5 +31,15 @@ describe('drawing horizontal and vertical lines', () => {
 
         const points = getAllPointsFromGrid(gridWithLine);
         expect(points.length).toEqual(8);
+    });
+});
+describe('rectangle drawing', () => {
+    it('should draw a rectangle in the specified area', () => {
+        const grid = createGrid(4, 20);
+
+        const gridWithRectangle = drawRectangle(grid, 14, 1, 18, 3);
+
+        const points = getAllPointsFromGrid(gridWithRectangle);
+        expect(points.length).toEqual(12);
     });
 });
