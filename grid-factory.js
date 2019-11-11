@@ -35,12 +35,13 @@ const addHorizontalGridBorders = (grid) => {
 };
 
 const addGridBorders = (grid) => {
+    // deep copy array to avoid changing references
     const gridWithBorders = grid.map(rowsWithColumns => {
         return [...rowsWithColumns]
     });
 
     gridWithBorders.push(grid[0].map(() => ' '));
-    gridWithBorders.push(grid[0].map(() => ' '));
+    gridWithBorders.unshift(grid[0].map(() => ' '));
 
     for (let row = 0; row < gridWithBorders.length; row++) {
         gridWithBorders[row].push(' ');
