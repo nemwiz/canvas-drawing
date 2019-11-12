@@ -1,6 +1,6 @@
 const {symbols} = require('./constants');
 
-const createGrid = (numOfRows, numOfColumns) => {
+const createGrid = (numOfColumns, numOfRows) => {
     let grid = [];
 
     for (let row = 0; row < numOfRows; row++) {
@@ -47,7 +47,7 @@ const addGridBorders = (grid) => {
 
     for (let row = 0; row < gridWithBorders.length; row++) {
         gridWithBorders[row].push(symbols.EMPTY);
-        gridWithBorders[row].push(symbols.EMPTY)
+        gridWithBorders[row].unshift(symbols.EMPTY)
     }
 
     return addHorizontalGridBorders(addVerticalBorders(gridWithBorders));

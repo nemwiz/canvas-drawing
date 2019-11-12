@@ -1,15 +1,14 @@
 const {createGrid, addGridBorders} = require('./grid-factory');
 
-
 describe('grid initialization', () => {
     it('should initialize a grid with exact number of rows and columns', () => {
-        const expectedNumOfRows = 6;
+        const expectedNumberOfRows = 6;
         const expectedNumberOfColumns = 8;
 
-        const grid = createGrid(expectedNumOfRows, expectedNumberOfColumns);
+        const grid = createGrid(expectedNumberOfRows, expectedNumberOfColumns);
 
-        expect(grid.length).toEqual(expectedNumOfRows);
-        expect(grid[0].length).toEqual(expectedNumberOfColumns);
+        expect(grid.length).toEqual(expectedNumberOfColumns);
+        expect(grid[0].length).toEqual(expectedNumberOfRows);
     });
     it('draws grid borders', () => {
         const rows = 6;
@@ -17,14 +16,14 @@ describe('grid initialization', () => {
 
         const grid = addGridBorders(createGrid(rows, columns));
 
-        for (let column = 0; column < grid[0].length; column++) {
-            expect(grid[0][column]).toEqual('-');
-            expect(grid[grid.length - 1][column]).toEqual('-');
+        for (let row = 0; row < grid[0].length; row++) {
+            expect(grid[0][row]).toEqual('-');
+            expect(grid[grid.length - 1][row]).toEqual('-');
         }
 
-        for (let row = 1; row < grid.length - 1; row++) {
-            expect(grid[row][0]).toEqual('|');
-            expect(grid[row][grid[0].length - 1]).toEqual('|');
+        for (let column = 1; column < grid.length - 1; column++) {
+            expect(grid[column][0]).toEqual('|');
+            expect(grid[column][grid[0].length - 1]).toEqual('|');
         }
     });
 });
