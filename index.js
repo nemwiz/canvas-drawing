@@ -7,4 +7,4 @@ printGrid(grid);
 printGrid(drawLine(grid, 1, 2, 6, 2));
 printGrid(drawLine(grid, 6, 3, 6, 4));
 printGrid(drawRectangle(grid, 14, 1, 18, 3));
-printGrid(bucketFill(grid, 10, 3));
+printGrid(bucketFill(grid, 10, 3, 'o'));

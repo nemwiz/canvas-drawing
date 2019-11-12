@@ -32,6 +32,12 @@ describe('drawing horizontal and vertical lines', () => {
         const points = getAllSymbolsFromGrid(gridWithLine, symbols.X);
         expect(points.length).toEqual(8);
     });
+    it('should throw an error if somebody tries to draw a line which is out of grid bounds', () => {
+        const grid = createGrid(20, 4);
+        expect(() => {
+            drawLine(grid, 22, 3, 6, 4);
+        }).toThrow();
+    });
 });
 describe('rectangle drawing', () => {
     it('should draw a rectangle in the specified area', () => {
@@ -44,14 +50,20 @@ describe('rectangle drawing', () => {
     });
 });
 describe('bucket fill', () => {
-   it('should fill only one half of the canvas', () => {
-      const grid = createGrid(3, 3);
-      const gridWithHorizontalLine = drawLine(grid, 1, 2, 3, 2);
+    it('should fill only one half of the canvas', () => {
+        const grid = createGrid(3, 3);
+        const gridWithHorizontalLine = drawLine(grid, 1, 2, 3, 2);
 
-      const filledGrid = bucketFill(gridWithHorizontalLine, 1, 1);
+        const filledGrid = bucketFill(gridWithHorizontalLine, 1, 1, symbols.FILL);
 
-      const points = getAllSymbolsFromGrid(filledGrid, symbols.FILL);
+        const points = getAllSymbolsFromGrid(filledGrid, symbols.FILL);
 
-      expect(points.length).toEqual(3);
-   });
+        expect(points.length).toEqual(3);
+    });
+    it('should throw an error if somebody tries to use a non-existing point for bucket fill', () => {
+        const grid = createGrid(3, 3);
+        expect(() => {
+            bucketFill(gridWithHorizontalLine, 5, 5, symbols.FILL);
+        }).toThrow();
+    });
 });
