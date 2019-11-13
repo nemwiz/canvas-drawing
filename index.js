@@ -84,12 +84,12 @@ const start = () => {
     let canvas = [];
     const commands = [commandConstants.C, commandConstants.L, commandConstants.R, commandConstants.B];
 
-    let comandIndex;
+    let commandIndex;
     let selectedCommand;
 
     while (true) {
-        comandIndex = readlineSync.keyInSelect(commands, 'Please select a command', {cancel: commandConstants.Q});
-        selectedCommand = commands[comandIndex];
+        commandIndex = readlineSync.keyInSelect(commands, 'Please select a command', {cancel: commandConstants.Q});
+        selectedCommand = commands[commandIndex];
 
         if (selectedCommand === commandConstants.Q || selectedCommand === undefined) {
             break;
