@@ -10,6 +10,14 @@ describe('canvas initialization', () => {
         expect(canvas.length).toEqual(expectedNumberOfColumns);
         expect(canvas[0].length).toEqual(expectedNumberOfRows);
     });
+    it('should throw an error if canvas initialization values are invalid', () => {
+        const expectedNumberOfRows = -5;
+        const expectedNumberOfColumns = 8;
+
+        expect(() => {
+            createCanvas(expectedNumberOfRows, expectedNumberOfColumns);
+        }).toThrow();
+    });
     it('draws canvas borders', () => {
         const rows = 6;
         const columns = 10;

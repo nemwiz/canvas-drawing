@@ -1,7 +1,15 @@
 const {symbols} = require('./constants');
 
+const isNullOrOverMaxSize = (number) => {
+  return number <= 0 || number > 50;
+};
+
 const createCanvas = (numOfColumns, numOfRows) => {
     let canvas = [];
+
+    if(isNullOrOverMaxSize(numOfColumns) || isNullOrOverMaxSize(numOfRows)) {
+        throw Error('Invalid values for canvas initialization. Max canvas size is 50.')
+    }
 
     for (let row = 0; row < numOfRows; row++) {
         canvas[row] = [];
